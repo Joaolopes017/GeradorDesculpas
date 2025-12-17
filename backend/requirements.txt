@@ -1,0 +1,21 @@
+# Dependências principais
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# LangChain e OpenAI - versões flexíveis
+langchain>=0.1.0,<0.2.0
+langchain-openai>=0.0.5,<0.1.0
+langchain-community>=0.0.20,<0.1.0
+openai>=1.12.0,<2.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+python-multipart>=0.0.6
+
+# Rate limiting (opcional)
+slowapi>=0.1.9
+
+# CORS e middleware
+aiofiles>=23.2.1
