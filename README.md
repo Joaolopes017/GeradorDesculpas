@@ -1,12 +1,12 @@
-# Gerador de Desculpas Plausíveis
+# Plausible Excuse Generator
 
-Sistema de geração de desculpas contextualizadas usando LangChain e OpenAI GPT-3.5-turbo.
+Contextualized excuse generation system using LangChain and OpenAI GPT-3.5-turbo.
 
-## Descrição
+## Description
 
-Aplicação web que gera desculpas plausíveis baseadas em princípios de Teoria da Atribuição e psicologia social. O sistema adapta o tom e conteúdo conforme o destinatário e contexto fornecidos.
+Web application that generates plausible excuses based on Attribution Theory principles and social psychology. The system adapts tone and content according to the recipient and provided context.
 
-## Tecnologias
+## Technologies
 
 **Backend:**
 - Python 3.11
@@ -19,99 +19,99 @@ Aplicação web que gera desculpas plausíveis baseadas em princípios de Teoria
 - Vite
 - Tailwind CSS
 
-## Funcionalidades
+## Features
 
-- 6 tons diferentes: Profissional, Casual, Afetivo, Dramático, Jovem, Ridículo
-- Ajuste de severidade (1-10)
-- Suporte multi-idioma (PT-PT, PT-BR, EN-US)
-- Opção de ativar/desativar emojis
-- Modo de linguagem adulta opcional (+18)
-- Campo de contexto adicional para restrições específicas
+- 6 different tones: Professional, Casual, Affectionate, Dramatic, Young, Absurd
+- Severity adjustment (1-10)
+- Multi-language support (PT-PT, PT-BR, EN-US)
+- Toggle emojis on/off
+- Optional mature language mode (+18)
+- Additional context field for specific constraints
 
-## Instalação
+## Installation
 
-### Requisitos
-- Docker e Docker Compose
+### Requirements
+- Docker and Docker Compose
 - OpenAI API Key
 
-### Configuração
+### Setup
 
-1. Clone o repositório
+1. Clone the repository
 ```bash
 git clone https://github.com/Joaolopes017/GeradorDesculpas.git
 cd GeradorDesculpas
 ```
 
-2. Configure a API key
+2. Configure API key
 ```bash
 cp .env.example .env
 ```
-Edite `.env` e adicione sua chave OpenAI:
+Edit `.env` and add your OpenAI key:
 ```
-OPENAI_API_KEY=sua_chave_aqui
+OPENAI_API_KEY=your_key_here
 ```
 
-3. Inicie com Docker
+3. Start with Docker
 ```bash
 docker-compose up -d --build
 ```
 
-4. Acesse a aplicação
+4. Access the application
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000
-- Documentação API: http://localhost:8000/docs
+- API Documentation: http://localhost:8000/docs
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 ├── backend/
 │   ├── app/
-│   │   ├── api/endpoints/     # Endpoints FastAPI
-│   │   ├── core/              # Configurações
-│   │   ├── schemas/           # Modelos Pydantic
-│   │   └── services/          # Lógica LangChain
+│   │   ├── api/endpoints/     # FastAPI endpoints
+│   │   ├── core/              # Configuration
+│   │   ├── schemas/           # Pydantic models
+│   │   └── services/          # LangChain logic
 │   └── requirements.txt
 ├── frontend/
 │   ├── src/
-│   │   ├── components/        # Componentes React
+│   │   ├── components/        # React components
 │   │   ├── hooks/             # Custom hooks
-│   │   └── lib/               # Utilitários e API client
+│   │   └── lib/               # Utilities and API client
 │   └── package.json
 └── docker-compose.yml
 ```
 
-## Uso da API
+## API Usage
 
-### Gerar Desculpa
+### Generate Excuse
 
 ```bash
 POST /api/generate
 Content-Type: application/json
 
 {
-  "receiver_role": "Chefe",
-  "event_context": "Reunião importante",
+  "receiver_role": "Boss",
+  "event_context": "Important meeting",
   "severity_level": 7,
   "tone_style": "Profissional",
-  "language": "pt-PT",
+  "language": "en-US",
   "use_emojis": false,
   "allow_mature_content": false
 }
 ```
 
-### Resposta
+### Response
 
 ```json
 {
-  "content": "Prezado, infelizmente tive um imprevisto inadiável que me impediu de comparecer à reunião...",
+  "content": "Dear Sir/Madam, unfortunately I had an unavoidable situation that prevented me from attending the meeting...",
   "tone_used": "Profissional",
   "word_count": 28
 }
 ```
 
-## Desenvolvimento
+## Development
 
-### Backend local (sem Docker)
+### Local backend (without Docker)
 
 ```bash
 cd backend
@@ -121,7 +121,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-### Frontend local (sem Docker)
+### Local frontend (without Docker)
 
 ```bash
 cd frontend
@@ -129,24 +129,24 @@ npm install
 npm run dev
 ```
 
-## Implementação LangChain
+## LangChain Implementation
 
-O sistema utiliza LangChain Expression Language (LCEL) para construir uma cadeia de processamento:
+The system uses LangChain Expression Language (LCEL) to build a processing chain:
 
 ```python
 chain = prompt_template | llm | StrOutputParser()
 ```
 
-O prompt é estruturado com instruções baseadas em Teoria da Atribuição, garantindo que as desculpas:
-- Apresentem locus de controle externo
-- Demonstrem boa intenção inicial
-- Sejam concisas e naturais
-- Adaptem-se ao tom especificado
+The prompt is structured with instructions based on Attribution Theory, ensuring that excuses:
+- Present external locus of control
+- Demonstrate good initial intention
+- Are concise and natural
+- Adapt to the specified tone
 
-## Licença
+## License
 
-MIT License - veja LICENSE para detalhes.
+MIT License - see LICENSE for details.
 
-## Autor
+## Author
 
 João Lopes ([@joaolopes017](https://github.com/joaolopes017))
